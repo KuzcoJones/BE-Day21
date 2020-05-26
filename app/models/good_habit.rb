@@ -1,2 +1,3 @@
 class GoodHabit < Habit
+  
 end

@@ -10,39 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_24_162235) do
+ActiveRecord::Schema.define(version: 0) do
 
-  create_table "dailies", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.boolean "completed"
-    t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_dailies_on_user_id"
-  end
-
-  create_table "habits", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "title"
-    t.integer "difficulty"
-    t.text "note"
-    t.boolean "completed"
-    t.string "streak"
-    t.boolean "good"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_habits_on_user_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.boolean "admin"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-  end
-
-  add_foreign_key "dailies", "users"
-  add_foreign_key "habits", "users"
 end
