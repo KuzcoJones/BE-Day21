@@ -10,4 +10,3 @@ class CreateHabitTags < ActiveRecord::Migration[6.0]
 end
 
 
-# t.references :habit, null: false, foreign_key: true

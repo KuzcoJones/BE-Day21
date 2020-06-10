@@ -20,7 +20,7 @@ habit = Habit.create!(user: keenan, title: 'No Smiling', difficulty: 2, note: 'N
 sarai = User.create!(email: 'sarai@gmail.com', password: '555', admin: false, type: 'User')
 tag = Tag.create!(title: 'Health')
 habit_tag = HabitTag.create!(habit: habit, tag: tag)
-daily = Daily.create!(user: keenan, completed: false)
+daily = Daily.create!(user: keenan, title: 'Saturday', completed: false)
 habit.update!(daily: daily)
 keenan.update!(type:'Admin', pin: 1234)
 
