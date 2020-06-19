@@ -13,4 +13,6 @@ class HabitTagController < ApplicationController
 
   def destroy
   end
+
+  
 end

@@ -18,18 +18,10 @@ class AuthController < ApplicationController
     user = User.find(user_id)
 
     if user 
-      render json: user.to_json(
-        # render habits and daily 
-        include: [habits: {only: [:id, :title, :difficulty, :note, :completed, :streak, :type ]}, tags: {only: [:id, :title]}, daily: {only: [:id, :completed, :title]} ], except: [:password_digest, :pin, :updated_at, :created_at]
-      )
-      
+      render json: UserSerializer.new(user).to_serialized_json
   else
       render json: {error: 'Invalid Token'}, status: 401
   end
   end
 
-
-
-  private
-  
 end
