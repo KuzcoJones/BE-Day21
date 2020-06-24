@@ -13,7 +13,13 @@ class HabitsController < ApplicationController
   end
   
   def update
-    byebug
+    token = request.headers[:Authorization].split(' ')[1]
+    decoded_token = JWT.decode(token, 'tweak', true, algorithm: 'HS256')
+    user_id = decoded_token[0]['user_id']
+    user = User.find(user_id)
+    habit = Habit.find(params['id'])
+    habit.update!(habit_params)
+    render json: {message: 'Edited Habit', habits: user.habits}
   end
 
   def destroy
@@ -26,10 +32,8 @@ class HabitsController < ApplicationController
 
     if user.id === habit.user_id
       habit.delete
-      render json: {message: 'habit delete', habits: user.habits}
+      render json: {habits: user.habits}
     end
-    
-    
     
   end
 
