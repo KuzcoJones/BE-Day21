@@ -7,6 +7,8 @@ class AuthController < ApplicationController
 
     if user && user.authenticate(params[:password])
       render json: {token: token}
+    else
+      render json: { error: 'User not found' }
     end
 
   end
