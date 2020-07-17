@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_24_222435) do
+ActiveRecord::Schema.define(version: 2020_07_17_024547) do
 
   create_table "dailies", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 2020_05_24_222435) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_dailies_on_user_id"
+  end
+
+  create_table "daily_habits", force: :cascade do |t|
+    t.integer "habit_id", null: false
+    t.integer "daily_id", null: false
+    t.boolean "completed"
+    t.string "streak"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["daily_id"], name: "index_daily_habits_on_daily_id"
+    t.index ["habit_id"], name: "index_daily_habits_on_habit_id"
   end
 
   create_table "habit_tags", force: :cascade do |t|
@@ -36,8 +47,6 @@ ActiveRecord::Schema.define(version: 2020_05_24_222435) do
     t.string "title"
     t.integer "difficulty"
     t.text "note"
-    t.boolean "completed"
-    t.string "streak"
     t.string "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -63,6 +72,8 @@ ActiveRecord::Schema.define(version: 2020_05_24_222435) do
   end
 
   add_foreign_key "dailies", "users"
+  add_foreign_key "daily_habits", "dailies"
+  add_foreign_key "daily_habits", "habits"
   add_foreign_key "habit_tags", "habits"
   add_foreign_key "habit_tags", "tags"
   add_foreign_key "habits", "dailies"
