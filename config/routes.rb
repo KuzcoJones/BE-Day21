@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   resources :auth, only: [:create]
   resources :habit_tags
   resources :tags, only: [:index, :show, :create, :update]
-  resources :daillies
+  resources :daily
   resources :habits
   resources :users, only: [:index, :show, :update]
+  resources :daily_habits, only: [:index, :create, :show, :update]
 
   get 'myuser', to: 'auth#show', as: '/myuser'
   post 'signup', to: 'users#create', as: '/signup'

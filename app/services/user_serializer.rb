@@ -11,7 +11,7 @@ class UserSerializer
   @user.to_json(
    :include => {
     :daily => {:only => [:id, :completed, :title]},
-    :habits => {:only => [:id, :title, :difficulty, :note, :completed, :type, :streak], :include => {:tags => {:only => [:id, :title]}}
+    :habits => {:only => [:id, :title, :difficulty, :note, :type], :include => {:tags => {:only => [:id, :title]}}
     }
    }, :except => [:password_digest, :pin, :updated_at, :created_at]
   )

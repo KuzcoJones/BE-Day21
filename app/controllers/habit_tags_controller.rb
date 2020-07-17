@@ -1,4 +1,4 @@
-class HabitTagController < ApplicationController
+class HabitTagsController < ApplicationController
   def index
   end
 

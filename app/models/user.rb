@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :habit_tags, through: :habits
   has_many :tags, through: :habit_tags
   has_one :daily, dependent: :destroy
+  has_many :daily_habits, through: :daily
 
 
 
