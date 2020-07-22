@@ -10,7 +10,7 @@ class UserSerializer
  def to_serialized_json
   @user.to_json(
    :include => {
-    :daily => {:only => [:id, :completed, :title]},
+    :daily => {:only => [:id, :completed, :title], :include => {:habits => {:only => [:id, :title, :difficulty, :note, :type]}}},
     :habits => {:only => [:id, :title, :difficulty, :note, :type], :include => {:tags => {:only => [:id, :title]}}
     }
    }, :except => [:password_digest, :pin, :updated_at, :created_at]
