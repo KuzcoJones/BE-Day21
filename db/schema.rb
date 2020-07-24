@@ -10,12 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_135107) do
+ActiveRecord::Schema.define(version: 2020_07_24_132623) do
 
   create_table "dailies", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.boolean "completed"
-    t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_dailies_on_user_id"

@@ -1,8 +1,6 @@
 class AuthController < ApplicationController
   def create
     user = User.find_by(email: params["email"])
-    
-    
     if user && user.authenticate(params[:password])
       payload = { user_id: user.id }
       token = JWT.encode(payload, 'tweak', 'HS256')
@@ -10,7 +8,6 @@ class AuthController < ApplicationController
     else
       render json: { error: 'User not found' }, status: 404
     end
-
   end
 
   def show

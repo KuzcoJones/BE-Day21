@@ -12,11 +12,6 @@ class User < ApplicationRecord
 
 
 
-  def genPin()
-    pinString = 4.times.map{rand(10)}.join
-    pinString.to_i 
-  end
-
   
 
 end

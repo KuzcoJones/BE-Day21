@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    byebug
     user = User.create!(user_params)
+    Daily.create!(user: user)
     payload = { user_id: user.id }
     token = JWT.encode(payload, 'tweak', 'HS256')
     render json: {token: token}

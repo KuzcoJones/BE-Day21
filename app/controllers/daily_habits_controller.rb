@@ -18,7 +18,6 @@ class DailyHabitsController < ApplicationController
  end
 
  def update
-  # making a completed habit status only for today and after 24hrs it goes back to false.
   token = request.headers[:Authorization].split(' ')[1]
   decoded_token = JWT.decode(token, 'tweak', true, algorithm: 'HS256')
   user_id = decoded_token[0]['user_id']
@@ -31,10 +30,9 @@ class DailyHabitsController < ApplicationController
    streak += 1
    daily_habit.update(streak: streak) 
    render json: UserSerializer.new(user).to_serialized_json 
+  else
+   render json: UserSerializer.new(user).to_serialized_json 
   end
-
-  # if user id matches user id of daily
-
  end
 
  def destroy
@@ -44,14 +42,12 @@ class DailyHabitsController < ApplicationController
   user = User.find(user_id)
   daily = Daily.find_by(user_id: user_id)
   daily_habit = DailyHabit.find_by(habit_id: params["habit_id"], daily: daily )
-
   if user_id === daily.user_id && daily.id === daily_habit.daily_id
   daily_habit.delete
   render json: UserSerializer.new(user).to_serialized_json 
  else 
   render json: {message: "User dones't match Daily"} 
  end
-
 end
 
 
