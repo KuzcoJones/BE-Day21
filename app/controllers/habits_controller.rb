@@ -33,8 +33,9 @@ class HabitsController < ApplicationController
     if user.id === habit.user_id
       habit.delete
       render json: {habits: user.habits}
+    else 
+      render json: {message: "Habit not deleted", habits: user.habits}
     end
-    
   end
 
   private 
